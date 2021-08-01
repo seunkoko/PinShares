@@ -1,0 +1,16 @@
+$breakpoint-md: 992px;
+
+.main {
+	height: 100%;
+	display: flex;
+	position: relative;
+
+	&-content-wrapper {
+		padding: 24px;
+		flex-grow: 1;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		overflow-y: auto;
+	}
+}

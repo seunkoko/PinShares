@@ -1,0 +1,19 @@
+
+.auth-form-wrapper {
+	margin: 0;
+	width: 100%;
+
+	.auth-form {
+		min-width: 300px;
+		max-width: 500px;
+		margin: 0 auto;
+		padding: 60px;
+		box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.4);
+		border-radius: 4px;
+
+		.auth-form-title {
+			text-transform: capitalize;
+			padding-bottom: 20px;
+		}
+	}
+}
