@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Button, Form } from 'react-bootstrap';
 
@@ -8,6 +8,7 @@ import MapComponent from './MapComponent';
 import { blueIcon, orangeIcon, createPopup } from '../../../../utils/mapHelper';
 import Multiselect from 'multiselect-react-dropdown';
 import Modal from '../../../common/Modal';
+import { fetchApi } from '../../../../utils/fetchApi';
 
 const defaultMapCenter = [51.4, -0.09];
 
@@ -21,15 +22,16 @@ const Map = ({ markers }) => {
 	const [usersToShareWith, setUsersToShareWith] = useState([]);
 	const [users, setUsers] = useState([]);
 
+	useEffect(() => {
+		const asyncFetchApi = async () => await fetchApi('all_users', 'GET')
 
-	// const createPopup = (marker, buttonText, info, handler) => {
-	// 	const button = L.DomUtil.create('button', 'btn btn-primary');
-	// 	button.innerHTML = buttonText;
-	// 	button.addEventListener('click', (e) => handler(e, marker));
-
-	// 	const popup = createPopupContent(info, button);
-	// 	selectedMarker.bindPopup(popup).openPopup();
-	// };
+        asyncFetchApi()
+        .then((data) => {
+            if (data.status === 'success') {
+                setUsers(data.data.users)
+            }
+        })
+	}, []);
 
     const handleAddNewPin = async (e) => {
 		e.preventDefault();
@@ -69,7 +71,7 @@ const Map = ({ markers }) => {
 					selectedValues={usersToShareWith}
 					onSelect={(selectedUsers) => setUsersToShareWith(selectedUsers)}
 					onRemove={(selectedUsers) => setUsersToShareWith(selectedUsers)}
-					displayValue="name" 
+					displayValue="username" 
 					selectionLimit={10}
 					closeOnSelect={false}
 					showArrow={true}
