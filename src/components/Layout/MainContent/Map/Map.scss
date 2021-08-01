@@ -1,0 +1,49 @@
+@import '~react-pro-sidebar/dist/scss/styles.scss';
+@import '~leaflet/dist/leaflet.css';
+
+.map-container {
+	flex-grow: 1;
+	display: flex;
+	overflow-y: auto;
+	background: yellow;
+	height: 100%;
+	box-sizing: border-box;
+
+	.leaflet-container {
+		height: 100%;
+		width: 100%;
+	}
+
+	.leaflet-div-icon {
+		background: transparent;
+		border: none;
+	}
+
+	.position-marker {
+		height: 50px;
+		width: 50px;
+
+		&-red {
+			color: red
+		}
+
+		&-blue {
+			color: blue
+		}
+
+		&-orange {
+			color: orange
+		}
+
+		&-black {
+			color: black
+		}
+	}
+}
+
+@media (max-width: $breakpoint-md) {
+	.map-container {
+		// flex-direction: row;
+		height: 75%;
+	}
+}

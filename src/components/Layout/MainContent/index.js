@@ -7,6 +7,8 @@ import { getToken } from '../../../utils/helper';
 
 import './MainContent.scss';
 
+import Map from './Map';
+
 
 const MainContent = ({ history, handleToggleSidebar }) => {
 	const [markers, setMarkers] = useState([]);
@@ -20,7 +22,7 @@ const MainContent = ({ history, handleToggleSidebar }) => {
         asyncFetchApi()
         .then((data) => {
             if (data.status === 'success') {
-                if (id === 'shared') setMarkers(data.data.user.my_shares)
+                if (id === 'shared') setMarkers(data.data.user.shares)
                 else if (id === 'my-pins') setMarkers(data.data.user.my_pins)
                 else setMarkers(data.data.user.all_pins)
             }
@@ -33,6 +35,7 @@ const MainContent = ({ history, handleToggleSidebar }) => {
 				<FaBars />
 			</div>
 			<div className="main-content">
+                <Map id={id} markers={markers} />
 			</div>
 		</>
 	);
