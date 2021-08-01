@@ -42,6 +42,25 @@ const Map = ({ markers }) => {
 		};
 		
 		console.log(newMarker)
+		const responseData = await fetchApi('pin', 'POST', newMarker)
+
+		if (responseData.status === 'success') {
+			newMarker['id'] = responseData.data.pin.id;
+			newMarker['shared'] = responseData.data.pin.shared;
+
+			markers.push(newMarker);
+			setModalShow(!showModal);
+			setNewMarkerName('');
+
+			const info = `<div> ${newMarker.name} </div> <br />`;
+			const popup = createPopup(newMarker, 'Share Pin', info, () => {
+				setSelectedMarkerInfo(newMarker);
+				setShareModalShow(!showShareModal)
+			})
+			selectedMarker.bindPopup(popup).openPopup();
+		} else if (responseData.status === 'fail') {
+			// display error message
+		}
 	};
 
 	const handleSharePinSubmit = async (e) => {
