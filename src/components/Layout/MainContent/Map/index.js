@@ -13,6 +13,7 @@ const defaultMapCenter = [51.4, -0.09];
 const Map = ({ markers }) => {
 	const [selectedMarker, setSelectedMarker] = useState(null);
 	const [selectedMarkerInfo, setSelectedMarkerInfo] = useState(null);
+	const [showModal, setModalShow] = useState(false);
 	const [users, setUsers] = useState([]);
 
     console.log(selectedMarker)
@@ -63,6 +64,8 @@ const Map = ({ markers }) => {
 
 				<MapComponent
 					setMarkerToAdd={setSelectedMarker}
+					setModalShow={setModalShow}
+					showModal={showModal}
 				/> 
 			</MapContainer>
 		</div>
