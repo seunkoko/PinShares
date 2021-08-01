@@ -5,9 +5,13 @@ import { Link } from 'react-router-dom';
 
 import './AuthForm.scss';
 
+import { fetchApi } from '../../../utils/fetchApi';
+import { setToken } from '../../../utils/helper';
+
 const AuthForm = ({ history, authType }) => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
+	const [errorMessage, setErrorMessage] = useState('');
 
 	const oppositeAuthType = authType === 'login' ? 'signup' : 'login'
 	const infoToDisplay = {
@@ -15,9 +19,27 @@ const AuthForm = ({ history, authType }) => {
 		'login': 'Click here to '
 	}
 
+	const onSubmit = async (e) => {
+		e.preventDefault();
+
+		const responseData = await fetchApi(authType, 'POST', { username, password })
+		if (responseData.status === 'success') {
+			setErrorMessage('')
+			setToken(responseData.data.token);
+			history.push('/');
+		}
+
+		if (responseData.status === 'fail') {
+			setErrorMessage(responseData.data.message)
+		}
+	}
+
 	return (
 		<div className="auth-form-wrapper">
-			<Form className="auth-form" onSubmit={() => {}}>
+			<Form className="auth-form" onSubmit={onSubmit}>
+				{errorMessage &&
+					<div className="mb-2 fs-6 text-danger">{errorMessage}</div>
+				}
 				<h3 className="auth-form-title">{authType}</h3>
 
 				<Form.Group className="mb-3" controlId="username">
