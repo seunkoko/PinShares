@@ -71,7 +71,7 @@ const AuthForm = ({ history, authType }) => {
 					Save
 				</Button>
 
-				<div className="mt-3 fs-6 text-muted">
+				<div className="mt-3 fs-6 text-white-50">
 					{infoToDisplay[authType]}
 
 					<Link to={`/${oppositeAuthType}`}>

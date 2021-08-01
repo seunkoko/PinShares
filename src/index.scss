@@ -16,3 +16,12 @@ code {
 #root {
 	height: 100%;
 }
+
+a {
+  color: #d7a055;
+  text-decoration: none;
+
+  &:hover {
+    color: #edd689;
+  }
+}

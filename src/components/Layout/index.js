@@ -5,6 +5,7 @@ import './Layout.scss';
 
 import AuthForm  from './AuthForm';
 import Sidebar from './Sidebar';
+import MainContent from './MainContent';
 
 
 const Dashboard = () => {
@@ -23,7 +24,8 @@ const Dashboard = () => {
 					<Switch>
 						<Route path="/login" children={<AuthForm authType="login"/>} />
 						<Route path="/signup" children={<AuthForm authType="signup"/>} />
-                        <Route path="/" children={<AuthForm authType="login" />} />
+                        <Route path="/:id" children={<MainContent handleToggleSidebar={handleToggleSidebar} />} />
+						<Route path="/" children={<MainContent handleToggleSidebar={handleToggleSidebar} />} />
 					</Switch>
 				</div>
 			</div>

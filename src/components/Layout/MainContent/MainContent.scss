@@ -1,0 +1,35 @@
+@import '~react-pro-sidebar/dist/scss/styles.scss';
+
+.main-content {
+	display: flex;
+	height: 100%;
+	flex-direction: row;
+	overflow-y: auto;
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.btn-toggle {
+	cursor: pointer;
+	width: 35px;
+	height: 35px;
+	background: #353535;
+	color: #fff;
+	text-align: center;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 15px;
+	display: none;
+	margin-bottom: 10px;
+}
+
+@media (max-width: $breakpoint-lg) {
+	.main-content {
+		flex-direction: column;
+	}
+
+	.btn-toggle {
+		display: flex;
+	}
+}
