@@ -41,7 +41,6 @@ const Map = ({ markers }) => {
 			latLng: [selectedMarker._latlng.lat, selectedMarker._latlng.lng]
 		};
 		
-		console.log(newMarker)
 		const responseData = await fetchApi('pin', 'POST', newMarker)
 
 		if (responseData.status === 'success') {
@@ -68,7 +67,18 @@ const Map = ({ markers }) => {
 
 		const userIds = usersToShareWith.map(user => user.id);
 		const pinId = selectedMarkerInfo.id;
-		console.log('Make an api call to share pin', selectedMarkerInfo, 'with', userIds);
+		
+		const responseData = await fetchApi(`share_pin/${pinId}`, 'POST', {
+			user_ids: userIds
+		})
+
+		if (responseData.status === 'success') {
+			setShareModalShow(!showShareModal);
+
+			console.log('share successful')
+		} else if (responseData.status === 'fail') {
+			// display error message
+		}
 	};
 
 	const handleUpdateMarker = async () => {
