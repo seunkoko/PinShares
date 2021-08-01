@@ -74,15 +74,27 @@ const Map = ({ markers }) => {
 
 		if (responseData.status === 'success') {
 			setShareModalShow(!showShareModal);
-
-			console.log('share successful')
 		} else if (responseData.status === 'fail') {
 			// display error message
 		}
 	};
 
 	const handleUpdateMarker = async () => {
-		console.log('Make an api call to update marker position');
+		const latLng = [selectedMarker._latlng.lat, selectedMarker._latlng.lng];
+
+		const responseData = await fetchApi(`pin/${selectedMarkerInfo.id}`, 'PUT', {
+			name: selectedMarkerInfo.name,
+			latLng
+		})
+		
+		if (responseData.status === 'success') {
+			selectedMarkerInfo['id'] = responseData.data.pin.id;
+			selectedMarkerInfo['name'] = responseData.data.pin.name;
+		
+			const info = `<div> ${selectedMarkerInfo.name} </div> <br />`;
+			const popup = createPopup(selectedMarker, 'Share Pin', info, () => setShareModalShow(!showShareModal));
+			selectedMarker.bindPopup(popup).openPopup();
+		}
 	};
 
 	const updateMarker = () => {
