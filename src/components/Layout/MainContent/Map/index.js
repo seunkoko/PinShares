@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { Button } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 
 import './Map.scss';
 
 import MapComponent from './MapComponent';
-import { blueIcon, orangeIcon } from '../../../../utils/mapHelper';
+import { blueIcon, orangeIcon, createPopup } from '../../../../utils/mapHelper';
+import Multiselect from 'multiselect-react-dropdown';
+import Modal from '../../../common/Modal';
 
 const defaultMapCenter = [51.4, -0.09];
 
@@ -14,10 +16,71 @@ const Map = ({ markers }) => {
 	const [selectedMarker, setSelectedMarker] = useState(null);
 	const [selectedMarkerInfo, setSelectedMarkerInfo] = useState(null);
 	const [showModal, setModalShow] = useState(false);
+	const [showShareModal, setShareModalShow] = useState(false);
+	const [newMarkerName, setNewMarkerName] = useState('');
+	const [usersToShareWith, setUsersToShareWith] = useState([]);
 	const [users, setUsers] = useState([]);
 
-    console.log(selectedMarker)
-    console.log(markers)
+
+	// const createPopup = (marker, buttonText, info, handler) => {
+	// 	const button = L.DomUtil.create('button', 'btn btn-primary');
+	// 	button.innerHTML = buttonText;
+	// 	button.addEventListener('click', (e) => handler(e, marker));
+
+	// 	const popup = createPopupContent(info, button);
+	// 	selectedMarker.bindPopup(popup).openPopup();
+	// };
+
+    const handleAddNewPin = async (e) => {
+		e.preventDefault();
+
+		const newMarker = {
+			name: newMarkerName,
+			latLng: [selectedMarker._latlng.lat, selectedMarker._latlng.lng]
+		};
+		
+		console.log(newMarker)
+	};
+
+	const handleSharePinSubmit = async (e) => {
+		e.preventDefault();
+
+		const userIds = usersToShareWith.map(user => user.id);
+		const pinId = selectedMarkerInfo.id;
+		console.log('Make an api call to share pin', selectedMarkerInfo, 'with', userIds);
+	};
+
+	const handleUpdateMarker = async () => {
+		console.log('Make an api call to update marker position');
+	};
+
+	const updateMarker = () => {
+		const info = '<div> Do you like this new pin? Click to Update </div> <br />';
+
+		const popup = createPopup(selectedMarker, 'Update Pin', info, handleUpdateMarker);
+		selectedMarker.bindPopup(popup).openPopup();
+	};
+
+	const sharePinModalContent = () => {
+		return (
+			<Form onSubmit={handleSharePinSubmit}>
+				<Multiselect
+					options={users} // options to display in the dropdown
+					selectedValues={usersToShareWith}
+					onSelect={(selectedUsers) => setUsersToShareWith(selectedUsers)}
+					onRemove={(selectedUsers) => setUsersToShareWith(selectedUsers)}
+					displayValue="name" 
+					selectionLimit={10}
+					closeOnSelect={false}
+					showArrow={true}
+				/>
+
+				<Button variant="primary" className="mt-3" type="submit">
+					Share
+				</Button>
+			</Form>
+		);
+	};
 
 	return (
 		<div className="map-container">
@@ -37,9 +100,11 @@ const Map = ({ markers }) => {
 							eventHandlers={{
 								dragstart: (e) => {
 									setSelectedMarkerInfo(marker);
+									setSelectedMarker(e.target);
 								},
 								dragend: (e) => {
 									setSelectedMarkerInfo(marker);
+									updateMarker();
 								},
 							}}
 						>
@@ -50,6 +115,7 @@ const Map = ({ markers }) => {
 										variant="primary"
 										onClick={(e) => {
 											setSelectedMarkerInfo(marker);
+											setShareModalShow(!showShareModal);
 										}}
 									>
 										Share Pin
@@ -63,10 +129,25 @@ const Map = ({ markers }) => {
 				})}
 
 				<MapComponent
+					setMarkerName={setNewMarkerName}
+					markerName={newMarkerName}
 					setMarkerToAdd={setSelectedMarker}
 					setModalShow={setModalShow}
 					showModal={showModal}
+					handleAddNewPin={handleAddNewPin}
 				/> 
+
+				<Modal
+					showModal={showShareModal}
+					setModalShow={setShareModalShow}
+					title="Share this Pin?"
+					modalContent={sharePinModalContent()}
+					onModalClose={() => {
+						setNewMarkerName('');
+						setUsersToShareWith([]);
+						setShareModalShow(!showShareModal);
+					}}
+				/>
 			</MapContainer>
 		</div>
 	);

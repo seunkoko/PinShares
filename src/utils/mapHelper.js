@@ -31,3 +31,12 @@ export const createPopupContent = (info, button) => {
 
 	return popup;
 };
+
+export const createPopup = (marker, buttonText, info, handler) => {
+	const button = L.DomUtil.create('button', 'btn btn-primary');
+	button.innerHTML = buttonText;
+	button.addEventListener('click', (e) => handler(e, marker));
+
+	return createPopupContent(info, button);
+};
+

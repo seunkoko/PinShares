@@ -1,11 +1,13 @@
 
 import L from 'leaflet';
+import { Button, Form } from 'react-bootstrap';
 import { useMapEvents } from 'react-leaflet';
 
 import { createPopupContent, redIcon } from '../../../../utils/mapHelper'
+import Modal from '../../../common/Modal';
 
 
-const MapComponent = ({ setMarkerToAdd, setModalShow, showModal }) => {
+const MapComponent = ({ setMarkerToAdd, setMarkerName, markerName, setModalShow, showModal, handleAddNewPin }) => {
 	const map = useMapEvents({
 		click: (location) => {
 			const { latlng } = location;
@@ -33,7 +35,41 @@ const MapComponent = ({ setMarkerToAdd, setModalShow, showModal }) => {
 
 	map.locate();
 
-	return (<> </>);
+	const addPinModalContent = () => {
+		return (
+			<Form onSubmit={handleAddNewPin}>
+				<Form.Group className="mb-3" controlId="formBasicEmail">
+					<Form.Label>Pin Name</Form.Label>
+					<Form.Control
+						type="text"
+						placeholder="Enter pin name"
+						name="newMarkerName"
+						value={markerName}
+						onChange={(e) => setMarkerName(e.target.value)}
+						required
+					/>
+					<Form.Text className="text-muted">Name your pin.</Form.Text>
+				</Form.Group>
+
+				<Button variant="primary" type="submit">
+					Save
+				</Button>
+			</Form>
+		);
+	};
+
+	return (
+		<Modal
+			showModal={showModal}
+			setModalShow={setModalShow}
+			title="Want this Pin?"
+			modalContent={addPinModalContent()}
+			onModalClose={() => {
+				setMarkerName('');
+				setModalShow(!showModal);
+			}}
+		/>
+	);
 };
 
 export default MapComponent;
