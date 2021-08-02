@@ -1,6 +1,6 @@
 # PINSHARES
 
-![img](https://raw.githubusercontent.com/seunkoko/dept-assessment/master/src/assets/images/responsiveUI/pic2.png)
+![img](https://raw.githubusercontent.com/seunkoko/PinShares/main/public/pin-share-image.png)
 
 This application was bootstrapped using CRA (create-react-app).
 
@@ -9,12 +9,26 @@ Hosted on heroku [here](https://pinshares.herokuapp.com/)
 
 ### Site Preview
 ---
+#### Login / Signup
+![img](https://raw.githubusercontent.com/seunkoko/PinShares/main/public/login.png)
 
-![img](https://raw.githubusercontent.com/seunkoko/dept-assessment/master/src/assets/images/responsiveUI/pic1.png)
+#### All Pins
+![img](https://raw.githubusercontent.com/seunkoko/PinShares/main/public/allpins.png)
 
-![img](https://raw.githubusercontent.com/seunkoko/dept-assessment/master/src/assets/images/responsiveUI/pic4.png)
+#### Shared Pins
+![img](https://raw.githubusercontent.com/seunkoko/PinShares/main/public/sharedpins.png)
 
-![img](https://raw.githubusercontent.com/seunkoko/dept-assessment/master/src/assets/images/responsiveUI/pic3.png)
+#### My Pin
+![img](https://raw.githubusercontent.com/seunkoko/PinShares/main/public/mypins.png)
+
+#### Add Pin
+![img](https://raw.githubusercontent.com/seunkoko/PinShares/main/public/addpins.png)
+
+#### Update Pin
+![img](https://raw.githubusercontent.com/seunkoko/PinShares/main/public/updatepin.png)
+
+#### Share Pin with other Users
+![img](https://raw.githubusercontent.com/seunkoko/PinShares/main/public/sharepin.png)
 
 
 ### Technologies Used
@@ -22,9 +36,14 @@ Hosted on heroku [here](https://pinshares.herokuapp.com/)
 
 - Javascript
 - React
-- HTML/CSS
-- Bootstrap4
-- CSS Grid
+- React Router
+- Leaflet
+- React Leaflet
+- Node SASS
+- React Bootstrap
+- React Multiselect Dropdown
+- React Pro Sidebar
+- React Icons
 - Flexbox
 
 
@@ -32,24 +51,20 @@ Hosted on heroku [here](https://pinshares.herokuapp.com/)
 ---
 
 - Clone the project repository.
-- Run git clone https://github.com/seunkoko/dept-assessment.git.
-- Change directory into the `dept-assessment` directory.
-- Install all necessary packages in the package.json file by running the command `yarn`.
-- To start your app locally, run `yarn start`.
-- To run tests, run `yarn test`.
-- To run tests with coverage, run `yarn test:coverage`
+- Run git clone https://github.com/seunkoko/PinShares.git.
+- Change directory into the `PinShares` directory.
+- Install all necessary packages in the package.json file by running the command `npm install`.
+- To start your app locally, run `npm start`.
 
 
 #### Contributing
 ---
 
 1. Fork this repository to your account.
-2. Clone your repository: git clone https://github.com/seunkoko/dept-assessment.git.
+2. Clone your repository: git clone https://github.com/seunkoko/PinShares.git.
 4. Commit your changes: git commit -m "did something".
 5. Push to the remote branch: git push origin new-feature.
 6. Open a pull request.
 
-#### Licence
-ISC
 
-Copyright (c) 2019 Oluwaseun Owonikoko
+Copyright (c) 2021 Oluwaseun Owonikoko
