@@ -4,7 +4,7 @@
 
 This application was bootstrapped using CRA (create-react-app).
 
-Hosted on heroku [here](https://pinshares.herokuapp.com/)
+Hosted on heroku [here](https://pinshares.netlify.app)
 
 
 ### Site Preview
@@ -92,23 +92,17 @@ Hosted on heroku [here](https://pinshares.herokuapp.com/)
 
 ### Limitations of my Solution
 ---
-- Pins can only be shared with a capped number of users to manage efficiency
+- Pins can only be shared with a capped number of users to manage efficiency.
 By the time the database grows large and users want to share pins to all users, it will be difficult to manage that
-- The database structure currently will not allow selected query of pins for different regions
-If the database struture was implemented keep track of regions each pin is created within, we might only need to get pins per regions where a user is viewing on the map
 - Getting and Searching through large number of users cannot be supported when sharing pins
 
-#### Consideration for 100 concurrent users
+#### Consideration for scalability (100, 1000, 100,000 concurrent users)
 ---
--
-
-#### Consideration for 1000 concurrent users
----
--
-
-#### Consideration for 100,000 concurrent users
----
--
+- Data caching could be implemented to reduce database and api call/request.
+- Implementation of a messaging systems (Kafka or Redis) to help handle and listen for real-time changes/updates.
+- Better searching engine/algorithm (elastic search) to ensure proper data retrieval for large data-sets.
+- Potential use of GraphQL to avoid over-fetching data from server/database.
+- Implementation of a multi-server based architecture with proper load balancing and reverse proxying.
 
 
 ### Future Futures
@@ -123,6 +117,8 @@ All Pins, Shared Pins and My Pins should be displayed to the screen, so that pin
 - Showing statistics of Pins created e.g. What regions you have highlighted most pins e.t.c
 - Add loaders to the platform so when api calls are made, the user sees some form of activity
 - Add message display to the app so users can see both success and error messages using packages like toastr
+- Proper monitoring and logging
+- Proper and in-depth unit and integration testing 
 
 
 Copyright (c) 2021 Oluwaseun Owonikoko

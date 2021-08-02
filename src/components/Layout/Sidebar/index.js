@@ -43,7 +43,7 @@ const Sidebar = ({ history, toggled, handleToggleSidebar }) => {
 									<Link to="/my-pins" />
 								</MenuItem>
 								<MenuItem icon={<GiPositionMarker />}>
-									Shared Pins
+									Shared with me
 									<Link to="/shared" />
 								</MenuItem>{' '}
 								<MenuItem
