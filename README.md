@@ -92,7 +92,11 @@ Hosted on heroku [here](https://pinshares.herokuapp.com/)
 
 ### Limitations of my Solution
 ---
--
+- Pins can only be shared with a capped number of users to manage efficiency
+By the time the database grows large and users want to share pins to all users, it will be difficult to manage that
+- The database structure currently will not allow selected query of pins for different regions
+If the database struture was implemented keep track of regions each pin is created within, we might only need to get pins per regions where a user is viewing on the map
+- Getting and Searching through large number of users cannot be supported when sharing pins
 
 #### Consideration for 100 concurrent users
 ---
@@ -109,7 +113,16 @@ Hosted on heroku [here](https://pinshares.herokuapp.com/)
 
 ### Future Futures
 ---
--
+- Update pin names. Currently only pin locations can be updated.
+- When sharing pins, users that have been shared with should not appear in the dropdown
+- Push notifications
+- Better display of Pin information
+All Pins, Shared Pins and My Pins should be displayed to the screen, so that pins can be searched through easily and clicked on to then be located on the map
+- Make sidebar menu active when clicked
+- Displaying location name for a Pin along with other info in the popup
+- Showing statistics of Pins created e.g. What regions you have highlighted most pins e.t.c
+- Add loaders to the platform so when api calls are made, the user sees some form of activity
+- Add message display to the app so users can see both success and error messages using packages like toastr
 
 
 Copyright (c) 2021 Oluwaseun Owonikoko

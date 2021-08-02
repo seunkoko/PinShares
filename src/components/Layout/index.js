@@ -31,10 +31,10 @@ const Dashboard = () => {
 
 				<div className="main-content-wrapper">
 					<Switch>
-						<Route path="/login" children={<AuthForm authType="login"/>} />
-						<Route path="/signup" children={<AuthForm authType="signup"/>} />
-                        <Route path="/:id" children={<MainContent handleToggleSidebar={handleToggleSidebar} />} />
-						<Route path="/" children={<MainContent handleToggleSidebar={handleToggleSidebar} />} />
+						<Route exact path="/login" children={<AuthForm authType="login"/>} />
+						<Route exact path="/signup" children={<AuthForm authType="signup"/>} />
+                        <Route exact path="/:id" children={<MainContent handleToggleSidebar={handleToggleSidebar} />} />
+						<Route exact path="/" children={<MainContent handleToggleSidebar={handleToggleSidebar} />} />
 					</Switch>
 				</div>
 			</div>
