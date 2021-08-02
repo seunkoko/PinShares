@@ -23,9 +23,9 @@ import Map from './Map';
 */
 const MainContent = ({ history, handleToggleSidebar }) => {
 	const [markers, setMarkers] = useState([]);
-
-    let { id } = useParams();
+    
     if (!getToken()) history.push('/login')
+    let { id } = useParams();
 
     useEffect(() => {
         const asyncFetchApi = async () => await fetchApi('user_info', 'GET')
