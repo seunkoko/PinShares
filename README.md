@@ -9,26 +9,47 @@ Hosted on heroku [here](https://pinshares.herokuapp.com/)
 
 ### Site Preview
 ---
-#### Login / Signup
+<details>
+<summary>Login / Signup</summary>
+
 ![img](https://raw.githubusercontent.com/seunkoko/PinShares/main/public/login.png)
+</details>
 
-#### All Pins
+<details>
+<summary>All Pins</summary>
+
 ![img](https://raw.githubusercontent.com/seunkoko/PinShares/main/public/allpins.png)
+</details>
 
-#### Shared Pins
+<details>
+<summary>Shared Pins</summary>
+
 ![img](https://raw.githubusercontent.com/seunkoko/PinShares/main/public/sharedpins.png)
+</details>
 
-#### My Pin
+<details>
+<summary>My Pin</summary>
+
 ![img](https://raw.githubusercontent.com/seunkoko/PinShares/main/public/mypins.png)
+</details>
 
-#### Add Pin
+<details>
+<summary>Add Pin</summary>
+
 ![img](https://raw.githubusercontent.com/seunkoko/PinShares/main/public/addpins.png)
+</details>
 
-#### Update Pin
+<details>
+<summary>Update Pin</summary>
+
 ![img](https://raw.githubusercontent.com/seunkoko/PinShares/main/public/updatepin.png)
+</details>
 
-#### Share Pin with other Users
+<details>
+<summary>Share Pin with other Users</summary>
+
 ![img](https://raw.githubusercontent.com/seunkoko/PinShares/main/public/sharepin.png)
+</details>
 
 
 ### Technologies Used
@@ -65,6 +86,28 @@ Hosted on heroku [here](https://pinshares.herokuapp.com/)
 4. Commit your changes: git commit -m "did something".
 5. Push to the remote branch: git push origin new-feature.
 6. Open a pull request.
+
+
+### Limitations of my Solution
+---
+-
+
+#### Consideration for 100 concurrent users
+---
+-
+
+#### Consideration for 1000 concurrent users
+---
+-
+
+#### Consideration for 100,000 concurrent users
+---
+-
+
+
+### Future Futures
+---
+-
 
 
 Copyright (c) 2021 Oluwaseun Owonikoko
