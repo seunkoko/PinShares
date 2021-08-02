@@ -28,16 +28,19 @@ const MainContent = ({ history, handleToggleSidebar }) => {
     let { id } = useParams();
 
     useEffect(() => {
-        const asyncFetchApi = async () => await fetchApi('user_info', 'GET')
+        if (!getToken()) history.push('/login')
+        else {
+            const asyncFetchApi = async () => await fetchApi('user_info', 'GET')
 
-        asyncFetchApi()
-        .then((data) => {
-            if (data.status === 'success') {
-                if (id === 'shared') setMarkers(data.data.user.shares)
-                else if (id === 'my-pins') setMarkers(data.data.user.my_pins)
-                else setMarkers(data.data.user.all_pins)
-            }
-        })
+            asyncFetchApi()
+            .then((data) => {
+                if (data.status === 'success') {
+                    if (id === 'shared') setMarkers(data.data.user.shares)
+                    else if (id === 'my-pins') setMarkers(data.data.user.my_pins)
+                    else setMarkers(data.data.user.all_pins)
+                }
+            })
+        }
     }, [id])
 
 	return (
@@ -46,7 +49,7 @@ const MainContent = ({ history, handleToggleSidebar }) => {
 				<FaBars />
 			</div>
 			<div className="main-content">
-                <Map id={id} markers={markers} />
+                <Map id={id} history={history} markers={markers} />
 			</div>
 		</>
 	);

@@ -9,6 +9,7 @@ import { blueIcon, purpleIcon, createPopup } from '../../../../utils/mapHelper';
 import Multiselect from 'multiselect-react-dropdown';
 import Modal from '../../../common/Modal';
 import { fetchApi } from '../../../../utils/fetchApi';
+import { getToken } from '../../../../utils/helper';
 
 const defaultMapCenter = [51.4, -0.09];
 
@@ -18,12 +19,13 @@ const defaultMapCenter = [51.4, -0.09];
  * 
  * Displays map with all necessary functions.
  * 
- * @param {object}    marker     Marker information from from API.
+ * @param {BrowserHistory}    history       Browser History from React Router.
+ * @param {object}            marker        Marker information from from API.
  * 
  * @return Map.
  * 
 */
-const Map = ({ markers }) => {
+const Map = ({ history, markers }) => {
 	const [selectedMarker, setSelectedMarker] = useState(null);
 	const [selectedMarkerInfo, setSelectedMarkerInfo] = useState(null);
 	const [showModal, setModalShow] = useState(false);
@@ -37,14 +39,17 @@ const Map = ({ markers }) => {
 	 * users - To populate share pin select dropdown.
 	 */ 
 	useEffect(() => {
-		const asyncFetchApi = async () => await fetchApi('all_users', 'GET')
+		if (!getToken()) history.push('/login')
+		else {
+			const asyncFetchApi = async () => await fetchApi('all_users', 'GET')
 
-        asyncFetchApi()
-        .then((data) => {
-            if (data.status === 'success') {
-                setUsers(data.data.users)
-            }
-        })
+			asyncFetchApi()
+			.then((data) => {
+				if (data.status === 'success') {
+					setUsers(data.data.users)
+				}
+			})
+		}
 	}, []);
 
 	/**
