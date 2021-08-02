@@ -10,6 +10,17 @@ import './MainContent.scss';
 import Map from './Map';
 
 
+/**
+ * MainContent.
+ * 
+ * Displays main content when a user is logged in.
+ * 
+ * @param {BrowserHistory}    history              Browser History from React Router.
+ * @param {function}          handleToggleSidebar  Function to open sidebar on mobile.
+ * 
+ * @return MainContent.
+ * 
+*/
 const MainContent = ({ history, handleToggleSidebar }) => {
 	const [markers, setMarkers] = useState([]);
 

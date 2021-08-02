@@ -7,7 +7,29 @@ import { createPopupContent, redIcon } from '../../../../utils/mapHelper'
 import Modal from '../../../common/Modal';
 
 
+/**
+ * MapComponent.
+ * 
+ * Displays map with all necessary functions.
+ * 
+ * @param {function}    setMarkerToAdd     Use State function to update Maker to add.
+ * @param {function}    setMarkerName      Use State function to update new maker name value.
+ * @param {string}      markerName         New marker name value to update.
+ * @param {function}    setModalShow       Use State function to show add pin modal.
+ * @param {boolean}     showModal          Show modal.
+ * @param {function}    handleAddNewPin    Make API request to add new pin.
+ * 
+ * @return Map.
+ * 
+*/
 const MapComponent = ({ setMarkerToAdd, setMarkerName, markerName, setModalShow, showModal, handleAddNewPin }) => {
+
+	/**
+	 * Add EventListeners to Map.
+	 * 
+	 * Click - Add pin
+	 * Location Found - Displaying user location on Map
+	 */ 
 	const map = useMapEvents({
 		click: (location) => {
 			const { latlng } = location;
@@ -35,6 +57,9 @@ const MapComponent = ({ setMarkerToAdd, setMarkerName, markerName, setModalShow,
 
 	map.locate();
 
+	/**
+	 * Create modal content for Add Pin.
+	 */ 
 	const addPinModalContent = () => {
 		return (
 			<Form onSubmit={handleAddNewPin}>

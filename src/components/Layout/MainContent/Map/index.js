@@ -5,7 +5,7 @@ import { Button, Form } from 'react-bootstrap';
 import './Map.scss';
 
 import MapComponent from './MapComponent';
-import { blueIcon, orangeIcon, createPopup } from '../../../../utils/mapHelper';
+import { blueIcon, purpleIcon, createPopup } from '../../../../utils/mapHelper';
 import Multiselect from 'multiselect-react-dropdown';
 import Modal from '../../../common/Modal';
 import { fetchApi } from '../../../../utils/fetchApi';
@@ -13,6 +13,16 @@ import { fetchApi } from '../../../../utils/fetchApi';
 const defaultMapCenter = [51.4, -0.09];
 
 
+/**
+ * Map.
+ * 
+ * Displays map with all necessary functions.
+ * 
+ * @param {object}    marker     Marker information from from API.
+ * 
+ * @return Map.
+ * 
+*/
 const Map = ({ markers }) => {
 	const [selectedMarker, setSelectedMarker] = useState(null);
 	const [selectedMarkerInfo, setSelectedMarkerInfo] = useState(null);
@@ -22,6 +32,10 @@ const Map = ({ markers }) => {
 	const [usersToShareWith, setUsersToShareWith] = useState([]);
 	const [users, setUsers] = useState([]);
 
+	/**
+	 * Gets all Users and set state.
+	 * users - To populate share pin select dropdown.
+	 */ 
 	useEffect(() => {
 		const asyncFetchApi = async () => await fetchApi('all_users', 'GET')
 
@@ -33,6 +47,12 @@ const Map = ({ markers }) => {
         })
 	}, []);
 
+	/**
+	 * Handle Add New Pin.
+	 * 
+	 * Gets selected marker and new marker name from state.
+	 * Makes an api call to add new pin.
+	 */ 
     const handleAddNewPin = async (e) => {
 		e.preventDefault();
 
@@ -62,6 +82,12 @@ const Map = ({ markers }) => {
 		}
 	};
 
+	/**
+	 * Handle Share Pin.
+	 * 
+	 * Gets selected users to share with.
+	 * Makes an api call to share pin.
+	 */ 
 	const handleSharePinSubmit = async (e) => {
 		e.preventDefault();
 
@@ -79,7 +105,13 @@ const Map = ({ markers }) => {
 		}
 	};
 
-	const handleUpdateMarker = async () => {
+	/**
+	 * Handle Update Pin.
+	 * 
+	 * Gets selected marker to update.
+	 * Makes an api call to update pin.
+	 */ 
+	const handleUpdatePin = async () => {
 		const latLng = [selectedMarker._latlng.lat, selectedMarker._latlng.lng];
 
 		const responseData = await fetchApi(`pin/${selectedMarkerInfo.id}`, 'PUT', {
@@ -97,13 +129,21 @@ const Map = ({ markers }) => {
 		}
 	};
 
-	const updateMarker = () => {
+	/**
+	 * Update pin.
+	 * 
+	 * Binds popup to selected marker with necessary EventListeners.
+	 */ 
+	const updatePin = () => {
 		const info = '<div> Do you like this new pin? Click to Update </div> <br />';
 
-		const popup = createPopup(selectedMarker, 'Update Pin', info, handleUpdateMarker);
+		const popup = createPopup(selectedMarker, 'Update Pin', info, handleUpdatePin);
 		selectedMarker.bindPopup(popup).openPopup();
 	};
 
+	/**
+	 * Create modal content for Share Pin.
+	 */ 
 	const sharePinModalContent = () => {
 		return (
 			<Form onSubmit={handleSharePinSubmit}>
@@ -137,7 +177,7 @@ const Map = ({ markers }) => {
 					return (
 						<Marker
 							position={marker.latLng}
-							icon={marker.shared ? orangeIcon : blueIcon}
+							icon={marker.shared ? purpleIcon : blueIcon}
 							key={marker.id}
 							draggable={!marker.shared}
 							eventHandlers={{
@@ -147,7 +187,7 @@ const Map = ({ markers }) => {
 								},
 								dragend: (e) => {
 									setSelectedMarkerInfo(marker);
-									updateMarker();
+									updatePin();
 								},
 							}}
 						>

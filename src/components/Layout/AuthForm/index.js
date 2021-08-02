@@ -8,6 +8,18 @@ import './AuthForm.scss';
 import { fetchApi } from '../../../utils/fetchApi';
 import { setToken } from '../../../utils/helper';
 
+
+/**
+ * AuthForm.
+ * 
+ * Displays Login / SignUp Forms.
+ * 
+ * @param {BrowserHistory}  history          Browser History from React Router.
+ * @param {string}          authType         Auth type which is either Login or Signup.
+ * 
+ * @return AuthForm.
+ * 
+*/
 const AuthForm = ({ history, authType }) => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
@@ -19,6 +31,9 @@ const AuthForm = ({ history, authType }) => {
 		'login': 'Click here to '
 	}
 
+	/* On Submit 
+	 * Makes API call to login or signup users 
+	*/
 	const onSubmit = async (e) => {
 		e.preventDefault();
 
@@ -67,8 +82,8 @@ const AuthForm = ({ history, authType }) => {
 					/>
 				</Form.Group>
 
-				<Button variant="primary" type="submit">
-					Save
+				<Button variant="primary text-capitalize" type="submit">
+					{authType}
 				</Button>
 
 				<div className="mt-3 fs-6 text-white-50">

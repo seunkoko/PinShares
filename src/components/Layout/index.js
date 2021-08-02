@@ -8,6 +8,15 @@ import Sidebar from './Sidebar';
 import MainContent from './MainContent';
 
 
+/**
+ * Dashboard.
+ * 
+ * Displays dashboard with Sidebar Component, AuthForm Component and MainContent.
+ * Dashboard display is determined by the routes.
+ * 
+ * @return Dashboard.
+ * 
+*/
 const Dashboard = () => {
     const [toggled, setToggled] = useState(false)
 

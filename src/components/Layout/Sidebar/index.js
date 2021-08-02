@@ -8,11 +8,24 @@ import './Sidebar.scss';
 
 import { getToken, logout } from '../../../utils/helper';
 
-const Sidebar = ({ history, collapsed, toggled, handleToggleSidebar }) => {
+
+/**
+ * Sidebar.
+ * 
+ * Displays sidebar and it's content.
+ * 
+ * @param {BrowserHistory}    history              Browser History from React Router.
+ * @param {boolean}           toggled              Hold toggled state of the sidebar.
+ * @param {function}          handleToggleSidebar  Function to open sidebar on mobile.
+ * 
+ * @return Sidebar.
+ * 
+*/
+const Sidebar = ({ history, toggled, handleToggleSidebar }) => {
 	const authToken = getToken();
 
 	return (
-		<ProSidebar collapsed={collapsed} toggled={toggled} breakPoint="lg" onToggle={handleToggleSidebar}>
+		<ProSidebar toggled={toggled} breakPoint="lg" onToggle={handleToggleSidebar}>
 			<SidebarHeader>
 				<div className="sidebar-title">PinShares</div>
 			</SidebarHeader>
