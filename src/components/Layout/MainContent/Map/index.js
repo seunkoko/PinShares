@@ -9,7 +9,6 @@ import { blueIcon, purpleIcon, createPopup } from '../../../../utils/mapHelper';
 import Multiselect from 'multiselect-react-dropdown';
 import Modal from '../../../common/Modal';
 import { fetchApi } from '../../../../utils/fetchApi';
-import { getToken } from '../../../../utils/helper';
 
 const defaultMapCenter = [51.4, -0.09];
 
@@ -39,17 +38,14 @@ const Map = ({ history, markers }) => {
 	 * users - To populate share pin select dropdown.
 	 */ 
 	useEffect(() => {
-		if (!getToken()) history.push('/login')
-		else {
-			const asyncFetchApi = async () => await fetchApi('all_users', 'GET')
+		const asyncFetchApi = async () => await fetchApi('all_users', 'GET')
 
-			asyncFetchApi()
+		asyncFetchApi()
 			.then((data) => {
 				if (data.status === 'success') {
 					setUsers(data.data.users)
 				}
 			})
-		}
 	}, []);
 
 	/**
