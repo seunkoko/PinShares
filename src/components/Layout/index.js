@@ -35,7 +35,6 @@ const Dashboard = () => {
 						<Route path="/signup" children={<AuthForm authType="signup"/>} />
                         <Route path="/:id" children={<MainContent handleToggleSidebar={handleToggleSidebar} />} />
 						<Route path="/" children={<MainContent handleToggleSidebar={handleToggleSidebar} />} />
-						<Route path="/*" children={<MainContent handleToggleSidebar={handleToggleSidebar} />} />
 					</Switch>
 				</div>
 			</div>
