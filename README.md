@@ -75,6 +75,8 @@ Hosted on heroku [here](https://pinshares.herokuapp.com/)
 - Run git clone https://github.com/seunkoko/PinShares.git.
 - Change directory into the `PinShares` directory.
 - Install all necessary packages in the package.json file by running the command `npm install`.
+- Set up environment variables.
+> Note: Checkout `.env.sample` in the root folder to do this.
 - To start your app locally, run `npm start`.
 
 
